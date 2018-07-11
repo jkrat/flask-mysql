@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>friends create read</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+
+        }
+        .col {
+            margin: 0px;
+        }
+        form {
+            margin-right: 30%;
+        }
+        button {
+            float: right;
+            margin: 10px 60px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+            <div class="container">
+                <h1>These are all my freinds!</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Occupation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% if friends %}
+                        {% for friend in friends %}
+                            <tr>
+                                <td>{{ friend['first_name'] }}</td>
+                                <td>{{ friend['last_name'] }}</td>
+                                <td>{{ friend['occupation'] }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}  
+                    </tbody>   
+                </table>
+        <div class="container">
+            <h1>Add a friend</h1>
+            <form action="/create_friend" method="POST">
+                <div class="row">
+                    <div class="col">
+                        <p class="field">First Name:</p>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" name="first_name" value="" placeholder="first name">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                            <p class="field">Last Name:</p>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" name="last_name" value="" placeholder="last name">
+                    </div>
+                </div>        
+                <div class="row">
+                    <div class="col">
+                            <p class="field">Occupation:</p>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" name="occupation" value="" placeholder="occupation">
+                    </div>
+                </div>     
+                <button type="submit" class="btn btn-primary">Add</button>  
+            </form>
+        </div>
+
+    </div>
+</body>
+</html>
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>friends create read</title>
+    <link rel="stylesheet" type="text/css" href="../static/CSS/bootstrap.css">
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+
+        }
+        h1 {
+            text-align: center;
+        }
+        .field {
+            text-align: right;
+            color: purple;
+        } 
+        .value {
+            text-align: left;
+        }
+        .col {
+            margin: 0px 40px;
+        }
+        hr {
+            border-top: 1px solid gray;
+            width: 70%;
+            margin: 20px auto;
+        }
+        button {
+            float: right;
+            margin: 10px 60px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+            <div class="container">
+                {% if friends %}
+                <h1>These are all my freinds!</h1>
+                    {% for friend in friends %}
+                    <div class="freind">
+                        <div class="row">
+                            <div class="col">
+                                <p class="field">First Name:</p>
+                            </div>
+                            <div class="col">
+                                <p class="value">{{friend['first_name']}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p class="field">Last Name:</p>
+                            </div>
+                            <div class="col">
+                                <p class="value">{{friend['last_name']}}</p>
+                            </div>
+                        </div>        
+                        <div class="row">
+                            <div class="col">
+                                <p class="field">Occupation:</p>
+                            </div>
+                            <div class="col">
+                                <p class="value">{{friend['occupation']}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    {% endfor %}
+                {% endif %}     
+        <div class="container">
+            <h1>Add a friend</h1>
+            <form action="/create_friend" method="POST">
+                <div class="row">
+                    <div class="col">
+                        <p class="field">First Name:</p>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" name="first_name" value="" placeholder="first name">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                            <p class="field">Last Name:</p>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" name="last_name" value="" placeholder="last name">
+                    </div>
+                </div>        
+                <div class="row">
+                    <div class="col">
+                            <p class="field">Occupation:</p>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" name="occupation" value="" placeholder="occupation">
+                    </div>
+                </div>     
+                <button type="submit" class="btn btn-primary">Add</button>  
+            </form>
+        </div>
+
+    </div>
+</body>
+</html> -->
