@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>friends create read</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+
+        }
+        .container {
+            min-height: 600px;
+            margin: 50px;
+            padding: 100px;
+            background-color: lightcoral;
+        }
+        button {
+            float: right;
+            margin: 10px 60px;
+        }
+        .flash {
+            color: green;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <p class="flash">{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <h4>Email Address Entered:</h4>
+            <table class="table">
+                <tbody>
+                {% if all_emails %}
+                    {% for entry in all_emails %}
+                        <tr>
+                            <td>{{ entry['email'] }}</td>
+                            <td>{{ entry['created_at'] }}</td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}  
+                </tbody>   
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+

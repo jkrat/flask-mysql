@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>email validation</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        .container {
+            min-height: 600px;
+            margin: 50px;
+            padding: 100px;
+            background-color: lightcoral;
+        }
+        form {
+            margin-right: 30%;
+        }
+        button {
+            float: right;
+            margin: 10px 0px;
+        }
+        .flash {
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <p class="flash">{{message}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <div class="container">
+        <form action="create_email" method="POST">
+            <div class="form-group row">
+                <label for="inputPassword" class="col-sm-3 col-form-label">Email Address:</label>
+                <div class="col-sm-9">
+                <input type="text" class="form-control" name="email" value="" placeholder="email">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
+
