@@ -41,6 +41,7 @@
                     {% endfor %}
                 {% endif %}
             {% endwith %}
+            <a href="/return" class="btn btn-primary my-2">Return</a>
             <h4>Email Address Entered:</h4>
             <table class="table">
                 <tbody>
@@ -49,6 +50,12 @@
                         <tr>
                             <td>{{ entry['email'] }}</td>
                             <td>{{ entry['created_at'] }}</td>
+                            <td>
+                                <form action="/delete" method="POST">
+                                    <input type="hidden" name="entry" value="{{ entry['email'] }}">
+                                    <input type="submit" class="btn btn-primary mb-2" name="delete" value="Delete"></a>
+                                </form>
+                            </td>
                         </tr>
                     {% endfor %}
                 {% endif %}  

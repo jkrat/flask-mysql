@@ -34,6 +34,7 @@
     </style>
 </head>
 <body>
+    <div class="container">
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for message in messages %}
@@ -41,7 +42,6 @@
             {% endfor %}
         {% endif %}
     {% endwith %}
-    <div class="container">
         <form action="create_email" method="POST">
             <div class="form-group row">
                 <label for="inputPassword" class="col-sm-3 col-form-label">Email Address:</label>
