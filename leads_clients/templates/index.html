@@ -2,15 +2,6 @@
 <head>
     <title>Leads and Clients</title>
     <link rel="stylesheet" href="https://cdn.rawgit.com/Chalarangelo/mini.css/v3.0.0/dist/mini-default.min.css">
-    <title>jQuery UI Datepicker - Default functionality</title>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-    $( function() {
-      $( "#datepicker" ).datepicker();
-    } );
-    </script>
     <style>
       * {
         margin:0px;
@@ -48,17 +39,17 @@
 </head>
 <body>
   <div class="wrapper">
-    <div class="date-bar">
+    <form class="date-bar" action="/daterange" method="POST">
       <div>
-        <input type="date">
+        <input type="date" name="start_date" value="">
         <span class="icon-calendar"></span>
       </div>
       <div>
-        <input type="date">
+        <input type="date" name="end_date" value="">
         <span class="icon-calendar"></span>
       </div>
       <button class="tertiary small">Update</button>
-    </div>
+    </form>
     <div class="table">
       <h5>List of all customers and # of leads</h5>
       <table class="striped hoverable">
@@ -68,20 +59,16 @@
             <th>Number of Leads</th>
           </tr>
         </thead>
+        {% if lead_count %}
         <tbody>
+          {% for client in lead_count %}
           <tr>
-            <td data-label="name">michael Choi</td>
-            <td data-label="leads">4</td>
+            <td data-label="name">{{ client.first_name }} {{ client.last_name }}</td>
+            <td data-label="leads">{{ client['leads'] }}</td>
           </tr>
-          <tr>
-            <td data-label="name">Joe Smith</td>
-            <td data-label="leads">3</td>
-          </tr>
-          <tr>
-            <td data-label="name">Ryan Owens</td>
-            <td data-label="leads">7</td>
-          </tr>
+          {% endfor %}
         </tbody>
+        {% endif %}
       </table>
     </div>
 
