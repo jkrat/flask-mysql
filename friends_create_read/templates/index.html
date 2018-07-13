@@ -19,41 +19,37 @@
             margin: 0px;
         }
         form {
-            margin-right: 30%;
+            width: 420px;
         }
         button {
             float: right;
-            margin: 10px 60px;
+            margin: 0px 20px;
+        }
+        .left button {
+            margin: 10px 30px;
+        }
+        .two {
+            display: inline-block;
+            width: 450px;
+            vertical-align: top;
+            margin: 20px 20px;
+        }
+        .left {
+            width: 40%;
+        }
+        .left form {
+            width: 100%;
+        }
+        div.col.find {
+            width: 40px;
         }
 
     </style>
 </head>
 <body>
-    <div class="wrapper">
-            <div class="container">
-                <h1>These are all my freinds!</h1>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Occupation</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {% if friends %}
-                        {% for friend in friends %}
-                            <tr>
-                                <td>{{ friend['first_name'] }}</td>
-                                <td>{{ friend['last_name'] }}</td>
-                                <td>{{ friend['occupation'] }}</td>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}  
-                    </tbody>   
-                </table>
-        <div class="container">
-            <h1>Add a friend</h1>
+    <div class="wrapper"> 
+        <div class="container two left">
+            <h2>Add a friend</h2>
             <form action="/create_friend" method="POST">
                 <div class="row">
                     <div class="col">
@@ -82,7 +78,79 @@
                 <button type="submit" class="btn btn-primary">Add</button>  
             </form>
         </div>
-
+        <div class="container two right">
+            <h2>find a friend</h2>
+            <form action="/create_friend" method="POST">
+                <div class="row">
+                    <div class="col">
+                        <p class="field">by First Name:</p>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" name="first_name" value="" placeholder="first name">
+                    </div>
+                    <div class="col find">
+                        <a href="/find_by_first"><button type="submit" class="btn btn-primary">Find</button></a> 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                            <p class="field">by Last Name:</p>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" name="last_name" value="" placeholder="last name">
+                    </div>
+                    <div class="col find">
+                            <button type="submit" class="btn btn-primary">Find</button> 
+                        </div>
+                </div>        
+                <div class="row">
+                    <div class="col">
+                            <p class="field">by Occupation:</p>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" name="occupation" value="" placeholder="occupation">
+                    </div>
+                    <div class="col find">
+                            <button type="submit" class="btn btn-primary">Find</button> 
+                    </div>
+                </div>     
+                <div class="row">
+                    <div class="col">
+                            <p class="field">All:</p>
+                    </div>
+                    <div class="col">
+                        <span></span>
+                    </div>
+                    <div class="col find">
+                        <button type="submit" class="btn btn-primary">Find</button> 
+                    </div>
+                </div>     
+            </form>
+        </div>
+        <hr>
+        <div class="container">
+            <h1>These are all my freinds!</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Occupation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% if friends %}
+                    {% for friend in friends %}
+                        <tr>
+                            <td>{{ friend['first_name'] }}</td>
+                            <td>{{ friend['last_name'] }}</td>
+                            <td>{{ friend['occupation'] }}</td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}  
+                </tbody>   
+            </table>
+        </div>
     </div>
 </body>
 </html>
