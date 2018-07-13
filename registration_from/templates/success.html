@@ -19,7 +19,7 @@
         border: 1px solid slategray;
         padding: 100px;
     }
-    .text-red {
+    .text-green {
         color: green;
         margin-left: 20px;
     }
@@ -31,9 +31,15 @@
 <body>
     <div class="wrapper">
         <div id="main">
-            <span class="text-red">message</span>
-            <h1>Welcome, you've been logged in, _______!</h1>
-            <a href="">Logout</a>
+            {% with errors = get_flashed_messages(category_filter=["register"]) %}
+            {% if errors %}
+                {% for msg in errors %}
+                    <span class="text-green">{{ msg }}</span>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <h1>Welcome, you've been logged in, {{ session['name']}}!</h1>
+            <a href="/logout">Logout</a>
         </div>
     </div>
     
