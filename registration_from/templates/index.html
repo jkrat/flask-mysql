@@ -49,69 +49,38 @@
                 <form action="/register" method="POST">
                     <div class="form-group">
                         <label>First name:</label>
-                        {% with errors = get_flashed_messages(category_filter=["firstName"]) %}
-                        {% if errors %}
-                            {% for msg in errors %}
-                                <span class="text-red">{{ msg }}</span>
-                            {% endfor %}
-                        {% endif %}
-                        {% endwith %}
-                        <input type="text" class="form-control" name="firstName"  placeholder="first name" value={{ session['firstName'] }}>
+                        <input type="text" class="form-control {{ session['firstName_validation_error'] }}" name="firstName"  placeholder="first name" value={{ session['firstName'] }}>
+                            <div class="invalid-feedback">Invalid first name</div>
                     </div>
 
                     <div class="form-group">
                         <label>Last name:</label>
-                        {% with errors = get_flashed_messages(category_filter=["lastName"]) %}
-                        {% if errors %}
-                            {% for msg in errors %}
-                                <span class="text-red">{{ msg }}</span>
-                            {% endfor %}
-                        {% endif %}
-                        {% endwith %}
-                        <input type="text" class="form-control" name="lastName"  placeholder="last name" value={{ session['lastName'] }}>
+                        <input type="text" class="form-control {{ session['lastName_validation_error'] }}" name="lastName"  placeholder="last name" value={{ session['lastName'] }}>
+                        <div class="invalid-feedback">Invalid last name</div>
                     </div>
 
                     <div class="form-group">
                         <label>Email:</label>
+                        <input type="text" class="form-control {{ session['email_validation_error'] }}" name="email" placeholder="email" value={{ session['email'] }}>
                         {% with errors = get_flashed_messages(category_filter=["email"]) %}
                         {% if errors %}
                             {% for msg in errors %}
-                                <span class="text-red">{{ msg }}</span>
+                                <div class="invalid-feedback">{{ msg }}</div>
                             {% endfor %}
                         {% endif %}
                         {% endwith %}
-                        {% with errors = get_flashed_messages(category_filter=["duplicate"]) %}
-                        {% if errors %}
-                            {% for msg in errors %}
-                                <span class="text-red">{{ msg }}</span>
-                            {% endfor %}
-                        {% endif %}
-                        {% endwith %}
-                        <input type="text" class="form-control" name="email" placeholder="email" value={{ session['email'] }}>
                     </div>
         
                     <div class="form-group">
                         <label>Password:</label>
-                        {% with errors = get_flashed_messages(category_filter=["password"]) %}
-                        {% if errors %}
-                            {% for msg in errors %}
-                                <span class="text-red">{{ msg }}</span>
-                            {% endfor %}
-                        {% endif %}
-                        {% endwith %}
-                        <input type="password" class="form-control" name="password" value="" placeholder="password">
+                        <input type="password" class="form-control {{ session['password_validation_error'] }}" name="password" value="" placeholder="password">
+                        <div class="invalid-feedback">Password should be more than 8 characters</div>
                     </div>
 
                     <div class="form-group">
                         <label>Confirm password:</label>
-                        {% with errors = get_flashed_messages(category_filter=["confirmPassword"]) %}
-                        {% if errors %}
-                            {% for msg in errors %}
-                                <span class="text-red">{{ msg }}</span>
-                            {% endfor %}
-                        {% endif %}
-                        {% endwith %}
-                        <input type="password" class="form-control" name="confirmPassword" value="" placeholder="Confirm Password">
+                        <input type="password" class="form-control {{ session['confirmPassword_validation_error'] }}" name="confirmPassword" value="" placeholder="Confirm Password">
+                        <div class="invalid-feedback">Passwords should match</div>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Register</button>
